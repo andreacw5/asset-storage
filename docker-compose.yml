@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  express-cdn:
+    image: registry.gitlab.com/elementgaming/express-cdn:0.1.0-beta.2
+    container_name: cdn
+    restart: unless-stopped
+    ports:
+      - '8089:8080'
+    env_file:
+      - ./config/cdn.env
+    volumes:
+      - ./uploads/:/src/uploads

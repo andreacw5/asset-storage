@@ -1,0 +1,13 @@
+.idea
+node_modules
+package-lock.json
+src/tmp
+src/uploads
+
+.env
+
+.DS_Store
+
+!src/uploads/.gitkeep
+
+!src/tmp/.gitkeep

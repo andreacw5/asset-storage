@@ -1,2 +1,2 @@
-# pg-image-storage
+# image-storage
 File uploader to disk/postgres
