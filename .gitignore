@@ -9,5 +9,4 @@ src/uploads
 .DS_Store
 
 !src/uploads/.gitkeep
-
 !src/tmp/.gitkeep
