@@ -1,20 +1,29 @@
-const { PrismaClient } = require('@prisma/client');
-const prisma = new PrismaClient();
 const sharp = require('sharp');
 const diskService = require('../services/disk.service');
+const databaseService = require('../services/database.service');
 const ShortUniqueId = require('short-unique-id');
 
 const CURRENT_YEAR = new Date().getFullYear();
 const CURRENT_MONTH = new Date().getMonth() + 1;
 
+const index = async (req, res) => {
+  const uploads = await databaseService.getAllAssets(
+    req.query.offset,
+    req.query.limit,
+  );
+  // Remove content from response
+  uploads.forEach((upload) => {
+    delete upload.content;
+  });
+  res.status(200).send({
+    data: uploads,
+  });
+};
+
 const get = async (req, res) => {
   const slug = req.params.slug;
   console.log('Get file: ' + slug);
-  const upload = await prisma.upload.findUnique({
-    where: {
-      slug,
-    },
-  });
+  const upload = await databaseService.getAsset(slug);
   if (upload) {
     // Return content of file
     console.debug('Upload found: ' + slug);
@@ -75,16 +84,14 @@ const upload = async (req, res) => {
     // Delete temp image from disk
     await diskService.deleteFileOnDisk(TEMP_PATH + req.file.filename);
     // Save optimized image on database
-    await prisma.upload.create({
-      data: {
-        name: req.file.originalname,
-        slug: filename,
-        type: 'image/webp',
-        content: optimizedImage,
-        size: String(req.file.size),
-        owner: 'web',
-        path: '/uploads/' + CURRENT_YEAR + '/' + CURRENT_MONTH + '/',
-      },
+    await databaseService.createAsset({
+      name: req.file.originalname,
+      slug: filename,
+      type: 'image/webp',
+      content: optimizedImage,
+      size: String(req.file.size),
+      owner: 'web',
+      path: '/uploads/' + CURRENT_YEAR + '/' + CURRENT_MONTH + '/',
     });
     console.log('File uploaded: ' + filename);
 
@@ -100,4 +107,5 @@ const upload = async (req, res) => {
 module.exports = {
   upload,
   get,
+  index,
 };

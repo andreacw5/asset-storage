@@ -79,7 +79,7 @@ class diskService {
   static async checkAndCreateDirectory(path) {
     const exists = await this.checkDirectory(path);
     if (!exists) {
-      console.log('Directory does not exist, creating it...');
+      console.debug('Directory does not exist, creating it...');
       await this.createDirectory(path);
     }
   }

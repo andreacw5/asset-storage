@@ -11,6 +11,7 @@ const envVarsSchema = Joi.object()
       .required(),
     PORT: Joi.number().default(8080),
     BASE_URL: Joi.string().default('http://localhost:8080'),
+    DATABASE_URL: Joi.string().default('http://localhost:8080'),
   })
   .unknown();
 
@@ -26,4 +27,5 @@ module.exports = {
   env: envVars.NODE_ENV,
   port: envVars.PORT,
   baseUrl: envVars.BASE_URL,
+  databaseUrl: envVars.DATABASE_URL,
 };
