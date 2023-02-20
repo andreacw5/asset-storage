@@ -1,10 +1,13 @@
 FROM node:18.10.0-alpine
 
 # Run app as non-root user
-# USER node
+USER node
 
 # Create app directory
 WORKDIR /home/node
+
+# Add permission to user
+RUN mkdir -p /home/node && chown -R node:node /home/node
 
 # Set environment variables
 ENV NODE_ENV production
