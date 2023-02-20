@@ -1,6 +1,6 @@
 {
   "name": "asset-storage",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Node.js Express Rest APIs to Upload/Download Files",
   "main": "src/app.js",
   "license": "MIT",
