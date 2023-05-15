@@ -9,9 +9,9 @@ const envVarsSchema = Joi.object()
     NODE_ENV: Joi.string()
       .valid('production', 'development', 'test')
       .required(),
-    PORT: Joi.number().default(8080),
-    BASE_URL: Joi.string().default('http://localhost:8080'),
-    DATABASE_URL: Joi.string().default('http://localhost:8080'),
+    PORT: Joi.number().default(8090),
+    BASE_URL: Joi.string().default('http://localhost:8090'),
+    DATABASE_URL: Joi.string().default('http://localhost:8090'),
   })
   .unknown();
 

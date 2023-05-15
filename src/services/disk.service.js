@@ -27,6 +27,7 @@ class diskService {
    * @returns {Promise<void>}
    */
   static async writeFileOnDisk(path, content) {
+    // Check and create requested directory
     writeFile(path, content, function (err) {
       if (err) {
         console.log(err);

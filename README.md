@@ -8,7 +8,7 @@ These instructions will get you a copy of the project up and running on your loc
 - Clone the repository to your local machine: `git clone https://github.com/andreacw5/asset-storage.git`
 - Install dependencies: `yarn install`
 - Start the application: `yarn dev`
-- Visit `http://localhost:3000` in your browser to use the application.
+- Visit `http://localhost:8090` in your browser to use the application.
 
 ## Features
 - Upload images
